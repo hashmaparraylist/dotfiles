@@ -1,2 +1,2 @@
 # dotfiles
-vim, zsh etc
+Vim, zsh etc. used on OS X 
