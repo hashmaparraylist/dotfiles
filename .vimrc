@@ -100,9 +100,28 @@ if has("gui_running")
     endif
 endif
 
-colo evening  " Color Theme
+" Color Theme
+if has("gui_running") 
+  colo evening
+else
+  if exists('$TMUX')
+    set term=xterm-256color
+  endif
 
-"Highlight currentline
+  set background=dark
+  colo solarized
+endif
+
+" set cursor shape at tmux
+if exists('$ITERM_PROFILE')
+  if exists('$TMUX') 
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  endif
+endif
+
+
+" highlight currentline
 if has("gui_running")
   set cursorline
   "set cursorcolumn
