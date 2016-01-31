@@ -68,8 +68,6 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin"
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # oh-my-zsh-powerline-theme
-POWERLINE_RIGHT_A="mixed"
-POWERLINE_HIDE_USER_NAME="true"
 
 # export
 export PATH=$PATH:/usr/local/mysql-connector-c-commercial-6.1.3-osx10.7-x86_64/bin
@@ -83,3 +81,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 alias gvim="/Applications/MacVim.app/Contents/MacOS/Vim"
+
+# node enviorment
+export NODE_ENV="development"
+#export NODE_ENV="production"
