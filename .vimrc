@@ -390,13 +390,16 @@ set tw=500
     "Plugin 'pydoc.vim'
     "Plugin 'vim-ruby/vim-ruby'
 
-    " develop language support
+    " develop support
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'scrooloose/syntastic'
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
     Plugin 'rizzatti/funcoo.vim'
     Plugin 'rizzatti/dash.vim'
+
+    " language support
+    Plugin 'keith/swift.vim'
 
     " others
     Plugin 'ryanoasis/vim-devicons'
@@ -452,6 +455,8 @@ set tw=500
       \ "Clean"     : "✔︎",
       \ "Unknown"   : "?"
       \ }
+
+    let g:ctrlp_cmd='CtrlPMRU'
 
     """"""""""""""""""""""""""""""
     " Gundo
@@ -510,7 +515,7 @@ set tw=500
     let g:syntastic_check_on_wq = 0
     "let g:syntastic_objc_config_file = '.clang_complete'
     let g:syntastic_javascript_checkers=['jscs']
-    
+    let g:syntastic_html_checkers = [] " don't check .html files
     
     """"""""""""""""""""""""""""""
     " vim snippets
