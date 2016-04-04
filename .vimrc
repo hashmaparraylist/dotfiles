@@ -337,8 +337,8 @@ set tabstop=4
 
 map <leader>t2 :set shiftwidth=2<cr>
 map <leader>t4 :set shiftwidth=4<cr>
-au FileType python,vim,ruby,eruby,css,scss setl shiftwidth=2
-au FileType python,vim,ruby,eruby,css,scss setl tabstop=2
+au FileType python,vim,ruby,eruby,css,scss,json setl shiftwidth=2
+au FileType python,vim,ruby,eruby,css,scss,json setl tabstop=2
 
 set smarttab
 set lbr
@@ -400,6 +400,7 @@ set tw=500
 
     " language support
     Plugin 'keith/swift.vim'
+    Plugin 'mxw/vim-jsx'
 
     " others
     Plugin 'ryanoasis/vim-devicons'
@@ -440,6 +441,7 @@ set tw=500
       " Ag is fast enough that ctrlp doesn't need to cache
       let g:ctrlp_use_caching=0
     endif
+    "let g:ctrlp_cmd='CtrlPMRU'
     
     """"""""""""""""""""""""""""""
     " nerdtree-git-plugin
@@ -455,8 +457,6 @@ set tw=500
       \ "Clean"     : "✔︎",
       \ "Unknown"   : "?"
       \ }
-
-    let g:ctrlp_cmd='CtrlPMRU'
 
     """"""""""""""""""""""""""""""
     " Gundo
