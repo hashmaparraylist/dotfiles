@@ -1,0 +1,36 @@
+schema:
+  schema_id: kaomoji
+  name: kaomoji
+  version: "1.0"
+  description: |
+    一些颜文字和符号. schema部分是抄emoji的.
+  author:
+    - zolunX10 <zolunx10@hotmail.com>
+ 
+engine:
+  processors:
+    - key_binder
+    - speller
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - abc_segmentor
+    - fallback_segmentor
+  translators:
+    - r10n_translator
+  filters:
+    - uniquifier
+ 
+translator:
+  dictionary: kaomoji
+  spelling_hints: 1
+ 
+key_binder:
+  import_preset: default
+ 
+speller:
+  alphabet: zyxwvutsrqponmlkjihgfedcba
+  delimiter: " ;'"
+  algebra:
+    - "derive/^.+$/all/"

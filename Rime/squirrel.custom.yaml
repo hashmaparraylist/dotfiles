@@ -1,0 +1,16 @@
+# squirrel.custom.yaml
+
+patch:
+  show_notifications_when: appropriate
+  style/color_scheme: luna
+  style/horizontal: true            # 候选窗横向显示
+  style/inline_preedit: true        # 关闭内嵌编码，这样就可以显示首行的拼音（MAC下不建议开启）
+  # style/corner_radius: 3          # 窗口圆角半径
+  # style/border_height: 4          # 窗口边界高度，大于圆角半径才有效果
+  # style/border_width: 4           # 窗口边界宽度，大于圆角半径才有效果
+  # style/line_spacing: 1           # 候选词的行间距
+  # style/spacing: 5                # 在非内嵌编码模式下，预编辑和候选词之间的间距
+  style/font_face: "Lantinghei SC Extralight"  # 预选栏文字字体，使用中文字体：兰亭黑-纤黑
+  style/font_point: 20              # 预选栏文字字号
+  style/label_font_face: "Monaco"
+  style/label_font_point: 17        # 预选栏编号字号
