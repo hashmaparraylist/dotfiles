@@ -25,7 +25,7 @@ set nocompatible
 set history=400
 
 "Enable filetype plugin
-filetype plugin on
+filetype plugin on 
 filetype indent on
 
 "Set to auto read when a file is changed from the outside
@@ -100,17 +100,17 @@ if has("gui_running")
     endif
 endif
 
-" Color Theme
-if has("gui_running") 
-  colo evening
+if has("gui_running")
+  "colo evening  " Color Theme
+  set background=dark
+  colo solarized
 else
   if exists('$TMUX')
     set term=xterm-256color
   endif
-
   set background=dark
   colo solarized
-endif
+endif 
 
 " set cursor shape at tmux
 if exists('$ITERM_PROFILE')
@@ -120,13 +120,13 @@ if exists('$ITERM_PROFILE')
   endif
 endif
 
-
-" highlight currentline
+"Highlight currentline
 if has("gui_running")
   set cursorline
   "set cursorcolumn
   hi CursorLine guibg=#444444
   "hi CursorColumn guibg=#444444
+  "set ambiwidth=double
 endif
 
 "Omni menu colors
@@ -337,8 +337,8 @@ set tabstop=4
 
 map <leader>t2 :set shiftwidth=2<cr>
 map <leader>t4 :set shiftwidth=4<cr>
-au FileType python,vim,ruby,eruby,css,scss,json setl shiftwidth=2
-au FileType python,vim,ruby,eruby,css,scss,json setl tabstop=2
+au FileType python,vim,ruby,eruby,css,scss,yaml,yml,json,javascript,vue,html setl shiftwidth=2
+au FileType python,vim,ruby,eruby,css,scss,yaml,yml,json,javascript,vue,html setl tabstop=2
 
 set smarttab
 set lbr
@@ -362,7 +362,7 @@ set tw=500
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin configuration
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    set guifont=Inconsolata\ for\ Powerline:h15
+    set guifont=Inconsolata\ for\ Powerline:h16
     filetype off
 
     """"""""""""""""""""""""""""""
@@ -377,7 +377,8 @@ set tw=500
     Plugin 'VundleVim/Vundle.vim'
 
     " addition window plugin
-    Plugin 'bling/vim-airline'
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
     Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'scrooloose/nerdtree'
     Plugin 'Xuyuanp/nerdtree-git-plugin'
@@ -391,19 +392,20 @@ set tw=500
     "Plugin 'vim-ruby/vim-ruby'
 
     " develop support
-    Plugin 'Valloric/YouCompleteMe'
+    "Plugin 'Valloric/YouCompleteMe'
     Plugin 'scrooloose/syntastic'
-    Plugin 'SirVer/ultisnips'
+    "Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
     Plugin 'rizzatti/funcoo.vim'
     Plugin 'rizzatti/dash.vim'
 
-    " language support
-    Plugin 'keith/swift.vim'
-    Plugin 'mxw/vim-jsx'
+    " language syntax
+    Plugin 'groenewege/vim-less'
 
     " others
     Plugin 'ryanoasis/vim-devicons'
+    " Vim syntax highlighting for Vue components.
+    Plugin 'posva/vim-vue'
 
     call vundle#end()       
     filetype plugin indent on
@@ -413,7 +415,7 @@ set tw=500
     """"""""""""""""""""""""""""""
     set laststatus=2
     let g:airline_powerline_fonts = 1
-    let g:airline_theme = "wombat"
+    let g:airline_theme = "solarized"
     let g:airline#extensions#tabline#enabled = 1 
     let g:airline#extensions#tagbar#endalbed = 1
 
@@ -426,12 +428,14 @@ set tw=500
     let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
     let g:airline_section_c='%{getcwd()}'
 
+    let g:airline_solarized_bg='dark'
+
     """"""""""""""""""""""""""""""
     " ctrlp
     """"""""""""""""""""""""""""""
     set runtimepath^=~/.vim/bundle/ctrlp.vim
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*.jpg,*.jpeg,*.gif " MacOSX/Linux
-    let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+    let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|)$'
 
     if executable('ag')
       "use ag over grep
@@ -441,6 +445,8 @@ set tw=500
       " Ag is fast enough that ctrlp doesn't need to cache
       let g:ctrlp_use_caching=0
     endif
+
+    let g:ctrlp_working_path_mode = '0'
     "let g:ctrlp_cmd='CtrlPMRU'
     
     """"""""""""""""""""""""""""""
@@ -458,6 +464,11 @@ set tw=500
       \ "Unknown"   : "?"
       \ }
 
+    let g:WebDevIconsNerdTreeGitPluginForceVAlign = 'on'
+    let g:airline_powerline_fonts = 1
+    let g:webdevicons_enable_airline_tabline = 1
+   autocmd FileType nerdtree setlocal ambiwidth=double
+
     """"""""""""""""""""""""""""""
     " Gundo
     """"""""""""""""""""""""""""""
@@ -473,32 +484,32 @@ set tw=500
     """"""""""""""""""""""""""""""
     " YouCompleteMe
     """"""""""""""""""""""""""""""
-    let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-    let g:ycm_always_populate_location_list = 1
-    let g:ycm_seed_identifiers_with_syntax = 1
-    let g:ycm_extra_conf_vim_data = ['&filetype']
-    let g:ycm_filetype_blacklist = {
-      \ 'tagbar' : 1,
-      \ 'qf' : 1,
-      \ 'notes' : 1,
-      \ 'markdonw' : 1,
-      \ 'vimwiki' : 1,
-      \ 'gitcommit' : 1
-      \ }
+    "let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+    "let g:ycm_always_populate_location_list = 1
+    "let g:ycm_seed_identifiers_with_syntax = 1
+    "let g:ycm_extra_conf_vim_data = ['&filetype']
+    "let g:ycm_filetype_blacklist = {
+    "  \ 'tagbar' : 1,
+    "  \ 'qf' : 1,
+    "  \ 'notes' : 1,
+    "  \ 'markdonw' : 1,
+    "  \ 'vimwiki' : 1,
+    "  \ 'gitcommit' : 1
+    "  \ }
 
-    let g:ycm_semantic_triggers =  {
-      \   'c' : ['->', '.'],
-      \   'objc' : ['->', '.', '\[[_a-zA-Z]+\w*\s'],
-      \   'ocaml' : ['.', '#'],
-      \   'cpp,objcpp' : ['->', '.', '::'],
-      \   'perl' : ['->'],
-      \   'php' : ['->', '::'],
-      \   'cs,java,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-      \   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
-      \   'ruby' : ['.', '::'],
-      \   'lua' : ['.', ':'],
-      \   'erlang' : [':'],
-      \ }
+    "let g:ycm_semantic_triggers =  {
+    "  \   'c' : ['->', '.'],
+    "  \   'objc' : ['->', '.', '\[[_a-zA-Z]+\w*\s'],
+    "  \   'ocaml' : ['.', '#'],
+    "  \   'cpp,objcpp' : ['->', '.', '::'],
+    "  \   'perl' : ['->'],
+    "  \   'php' : ['->', '::'],
+    "  \   'cs,java,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+    "  \   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
+    "  \   'ruby' : ['.', '::'],
+    "  \   'lua' : ['.', ':'],
+    "  \   'erlang' : [':'],
+    "  \ }
 
     let g:ycm_error_symbol = '✗'
 
@@ -514,17 +525,17 @@ set tw=500
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
     "let g:syntastic_objc_config_file = '.clang_complete'
-    let g:syntastic_javascript_checkers=['jscs']
-    let g:syntastic_html_checkers = [] " don't check .html files
+    "let g:syntastic_javascript_checkers=['jscs']
+    
     
     """"""""""""""""""""""""""""""
     " vim snippets
     """"""""""""""""""""""""""""""
-    let g:UltiSnipsExpandTrigger="<c-tab>"
-    let g:UltiSnipsJumpForwardTrigger="<c-b>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    "let g:UltiSnipsExpandTrigger="<c-tab>"
+    "let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
     " If you want :UltiSnipsEdit to split your window.
-    let g:UltiSnipsEditSplit="vertical"
+    "let g:UltiSnipsEditSplit="vertical"
 
     """"""""""""""""""""""""""""""
     " vim-startify
@@ -548,10 +559,10 @@ set tw=500
             \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
         return centered_lines
     endfunction
+
     let g:startify_custom_header = s:filter_header(map(split(system('fortune | cowsay'), '\n'), '"   ". v:val') + ['',''])
 
-
-    let g:startify_bookmarks              = [ {'c': '~/.vim/vimrc'} ]
+    let g:startify_bookmarks              = [ {'a': '~/.zshrc'}, {'b': '~/.vimrc'}, {'c': '~/.tmux.conf'} ]
     let g:startify_change_to_dir          = 0
     let g:startify_enable_special         = 0
     let g:startify_files_number           = 8
@@ -573,4 +584,3 @@ set tw=500
     let html_use_css = 1
     let html_number_lines = 0
     let use_xhtml = 1
-
