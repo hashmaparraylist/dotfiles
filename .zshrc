@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="powerline"
+ZSH_THEME="bira"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -45,7 +45,23 @@ ZSH_THEME="powerline"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git tmux npm bower history command-not-found ruby rvm brew osx)
+plugins=(
+  git
+  z
+  tmux 
+  npm 
+  bower 
+  history 
+  command-not-found 
+  ruby 
+  rvm 
+  brew 
+  macos
+  colored-man-pages
+  colorize
+  iterm2
+  kubectl
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -70,9 +86,6 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin"
 # oh-my-zsh-powerline-theme
 
 # export
-export PATH=$PATH:/usr/local/mysql-connector-c-commercial-6.1.3-osx10.7-x86_64/bin
-
-
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
@@ -80,8 +93,3 @@ export PATH=/usr/local/sbin:$PATH
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-alias gvim="/Applications/MacVim.app/Contents/MacOS/Vim"
-
-# node enviorment
-export NODE_ENV="development"
-#export NODE_ENV="production"
